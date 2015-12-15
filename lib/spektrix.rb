@@ -1,3 +1,4 @@
+require 'her'
 require "spektrix/version"
 
 module Spektrix
