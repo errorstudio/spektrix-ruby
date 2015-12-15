@@ -56,7 +56,6 @@ module Spektrix
 
         #Api Auth
         c.params[:api_key] = @api_key
-        c.use Spektrix::TokenAuthentication
 
         # Request
         c.use Faraday::Request::UrlEncoded
