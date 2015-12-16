@@ -20,14 +20,18 @@ module Spektrix
                   :client_key_path, #your private RSA key
                   :client_cert_path, # the cert signed by Spektrix
                   :api_key, #the key you get from the spektrix interface.
-                  :proxy #note that proxying requests with a client cert might break some stuff.
+                  :proxy, #note that proxying requests with a client cert might break some stuff.
+                  :base_url,
+                  :api_path
 
     attr_reader :connection,
                 :ssl_options
 
     def initialize
       @connection ||= Her::API.new
-      @user_agent = "Spektrix Ruby client #{Spektrix::VERSION} (http://github.com/errorstudio/spektrix-ruby)"
+      @user_agent = "Spektrix Ruby client #{Spektrix::VERSION} (http://github.com/errorstudio/spektrix-ruby)",
+      @base_url = "https://api.system.spektrix.com"
+      @api_path = "api/v2"
     end
 
     def user_agent=(agent)
@@ -45,14 +49,16 @@ module Spektrix
         raise ArgumentError, "You need to configure the Spektrix gem with a client name, private and public keys before making a call to Spektrix"
       end
 
-      @connection_path = "https://api.system.spektrix.com/#{@client_name}/api/v2"
+      @connection_path = "#{@base_url}/#{@client_name}/#{@api_path}"
+      # @connection_path = "http://localhost:8000"
       @ssl_options = {
         :client_cert => OpenSSL::X509::Certificate.new(File.read(@client_cert_path)),
-        :client_key => OpenSSL::PKey::RSA.new(File.read(@client_key_path))
+        :client_key => OpenSSL::PKey::RSA.new(File.read(@client_key_path)),
+        :verify => false
       }
 
 
-      @connection.setup url: @connection_path, ssl: @ssl_options do |c|
+      @connection.setup url: @connection_path, ssl: @ssl_options, proxy: @proxy do |c|
 
         #Api Auth
         c.params[:api_key] = @api_key
