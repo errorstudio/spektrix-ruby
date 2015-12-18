@@ -64,6 +64,9 @@ Spektrix::Tickets::Band.all #a collection of bands
 Spektrix::Tickets::PriceList.where(event_id: 123) #the prices for event 123, without calling the Event itself.
 ```
 
+## Custom Attributes
+Spektrix allows you to set custom attributes for various objects. This library handles these automatically, and they're accessible as instance variables on your objects.
+
 # Contributing
 We'd love to have your input if you're making use of this:
 
