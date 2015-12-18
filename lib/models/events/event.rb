@@ -11,7 +11,6 @@ module Spektrix
         Instance.where(event_id: self.id).to_a
       end
 
-
     end
   end
 end
