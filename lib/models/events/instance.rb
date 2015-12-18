@@ -5,7 +5,7 @@ module Spektrix
       include Spektrix::Base
       collection_path "instances"
 
-      after_find ->(r) {
+      after_find ->(r) do
         [:start,
          :start_utc,
          :start_selling_at,
@@ -14,12 +14,17 @@ module Spektrix
          :stop_selling_at_utc
         ].each do |field|
           if r.respond_to?(field)
-            r.send(:"#{field}=",DateTime.parse(r.send(
-              field)))
-          end
+            time = Time.parse(r.send(field))
+            if field.to_s =~ /_utc$/
+              time = time.in_time_zone('UTC')
+            else
+              time = time.in_time_zone('London')
+            end
 
+            r.send(:"#{field}=",time)
+          end
         end
-      }
+      end
 
       def status
         InstanceStatus.where(instance_id: self.id).first
