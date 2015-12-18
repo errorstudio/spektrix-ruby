@@ -34,6 +34,10 @@ module Spektrix
       def entity_name
         self.to_s.demodulize.underscore
       end
+
+      def first
+        all.first
+      end
     end
 
   end
