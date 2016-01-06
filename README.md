@@ -41,7 +41,7 @@ end
 # Use
 
 ## Events, instances and prices
-Events have instances, which in turn have seating plans and a price list. Seating plans aren't catered for, but bands and ticket types are.
+Events have instances, which in turn have seating plans and a price list.
 
 ```
 include Spektrix #You don't have to do this, just prefix all the calls with `Spektrix::` otherwise
