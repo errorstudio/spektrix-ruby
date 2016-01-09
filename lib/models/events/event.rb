@@ -11,6 +11,10 @@ module Spektrix
         Instance.where(event_id: self.id).to_a
       end
 
+      def title
+        name
+      end
+
     end
   end
 end
