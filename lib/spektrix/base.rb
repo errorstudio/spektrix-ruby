@@ -29,6 +29,11 @@ module Spektrix
         where("#{entity_name}_id" => id).first
       end
 
+      # 'all' needs to have a querystring param
+      def all
+        where(all: true)
+      end
+
       # Get the entity name; used in other places (like find())
       # @return [String] the entity name
       def entity_name
