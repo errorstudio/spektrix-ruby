@@ -29,9 +29,9 @@ module Spektrix
         where("#{entity_name}_id" => id).first
       end
 
-      # 'all' needs to have a querystring param
-      def all
-        where(all: true)
+      # 'all' needs to have a querystring param passed to really get all
+      def all(args = {})
+        super({all: true}.merge(args))
       end
 
       # Get the entity name; used in other places (like find())
