@@ -23,7 +23,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "her", "~> 0.8"
   spec.add_dependency "require_all", "~> 1.3"
-  # spec.add_dependency "multi_xml", "~> 0.5"
-  # spec.add_dependency "faraday_middleware", "~> 0.10"
   spec.add_dependency "nokogiri"
 end
