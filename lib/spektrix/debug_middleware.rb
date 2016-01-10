@@ -1,3 +1,5 @@
+# Code courtesty https://github.com/envylabs/faraday-detailed_logger - MIT licence
+
 module Spektrix
   class DebugMiddleware < Faraday::Response::Middleware
 
