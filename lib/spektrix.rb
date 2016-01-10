@@ -22,7 +22,8 @@ module Spektrix
                   :api_key, #the key you get from the spektrix interface.
                   :proxy, #note that proxying requests with a client cert might break some stuff.
                   :base_url,
-                  :api_path
+                  :api_path,
+                  :logger
 
     attr_reader :connection,
                 :ssl_options
@@ -59,6 +60,12 @@ module Spektrix
 
 
       @connection.setup url: @connection_path, ssl: @ssl_options, proxy: @proxy do |c|
+
+        if @logger
+          #Connection Debugging
+          c.use Spektrix::DebugMiddleware, @logger
+        end
+
 
         #Api Auth
         c.params[:api_key] = @api_key
