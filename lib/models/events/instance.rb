@@ -6,6 +6,7 @@ module Spektrix
       collection_path "instances"
 
       after_find ->(r) do
+        # parse times
         [:start,
          :start_utc,
          :start_selling_at,
@@ -24,15 +25,24 @@ module Spektrix
             r.send(:"#{field}=",time)
           end
         end
+
+        # we make price_list an actual Spektrix::Tickets:PriceList, but keep the original for reference
+        r.price_list_id = r.price_list[:id].to_i
+
       end
 
       def status
         InstanceStatus.where(instance_id: self.id).first
       end
 
-      def prices
-        Tickets::PriceList.where(instance_id: self.id).first.prices
+      def price_list
+        Tickets::PriceList.where(instance_id: self.id).first
       end
+
+      def event_object
+        Event.where(event_id: event[:id]).first
+      end
+
     end
   end
 end
