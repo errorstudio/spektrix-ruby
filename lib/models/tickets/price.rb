@@ -1,6 +1,6 @@
 module Spektrix
   module Tickets
-    class Price < OpenStruct
+    class Price < ::OpenStruct
 
     end
   end
