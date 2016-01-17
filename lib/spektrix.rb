@@ -1,5 +1,7 @@
 require 'her'
 require 'nokogiri'
+require 'ostruct'
+
 require 'require_all'
 require_rel "spektrix/deep_symbolize"
 require_rel '.'
