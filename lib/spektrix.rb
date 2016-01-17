@@ -6,7 +6,7 @@ require_rel '.'
 class Hash; include DeepSymbolizable; end
 module Spektrix
   class << self
-    attr_accessor :configuration
+    attr_accessor :configuration, :debug_request
   end
 
   def self.configure
