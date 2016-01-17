@@ -31,8 +31,11 @@ module Spektrix
     # Returns the result of the parent application execution.
     #
     def call(env)
-      @logger.info(@progname) { "#{env[:method].upcase} #{env[:url]}" }
-      @logger.debug(@progname) { curl_output(env[:request_headers], env[:body]).inspect }
+      if Spektrix.debug_request
+        @logger.info(@progname) { "#{env[:method].upcase} #{env[:url]}" }
+        @logger.debug(@progname) { curl_output(env[:request_headers], env[:body]).inspect }
+      end
+
       super
     end
 
