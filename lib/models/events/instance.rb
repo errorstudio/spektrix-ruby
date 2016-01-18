@@ -35,7 +35,7 @@ module Spektrix
         InstanceStatus.where(instance_id: self.id).first
       end
 
-      def price_list
+      def price_list_object
         Tickets::PriceList.where(instance_id: self.id).first
       end
 
