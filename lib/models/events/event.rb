@@ -8,7 +8,7 @@ module Spektrix
       after_find -> (r) { r.duration = r.duration.to_i.minutes }
 
       def instances
-        Instance.where(event_id: self.id).to_a
+        Instance.where(event_id: self.id, all: true).to_a
       end
 
       def title
