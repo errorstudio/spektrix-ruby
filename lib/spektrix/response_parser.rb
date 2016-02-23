@@ -21,8 +21,8 @@ module Spektrix
 
       # Traverse the array, fixing up any attributes called 'attribute'
       data.each do |item|
+        item[:custom_attributes] = {}
         if item.has_key?(:attribute)
-          item[:custom_attributes] = {}
           item[:attribute].each do |attribute_pair|
             next unless attribute_pair.is_a?(Hash)
             key = attribute_pair.values.first.underscore.downcase.parameterize("_").to_sym
