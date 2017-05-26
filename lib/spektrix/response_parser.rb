@@ -25,7 +25,7 @@ module Spektrix
         if item.has_key?(:attribute)
           item[:attribute].each do |attribute_pair|
             next unless attribute_pair.is_a?(Hash)
-            key = attribute_pair.values.first.underscore.downcase.parameterize(separator: "_").to_sym
+            key = attribute_pair.values.first.underscore.downcase.parameterize("_").to_sym
             value = attribute_pair.values.last
             value = false if value == "0"
             value = true if value == "1"
